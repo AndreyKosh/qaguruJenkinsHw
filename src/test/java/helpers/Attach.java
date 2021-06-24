@@ -5,7 +5,6 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -69,7 +68,8 @@ public class Attach {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+        String videoRemote = PropertyReader.readVideoUrl();
+        String videoUrl = videoRemote + sessionId + ".mp4";
 
         try {
             return new URL(videoUrl);
@@ -78,5 +78,4 @@ public class Attach {
         }
         return null;
     }
-
 }
